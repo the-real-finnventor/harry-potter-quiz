@@ -55,8 +55,8 @@ function Question({
     const Ref = useRef(null);
     const [timer, setTimer] = useState(`00:00:${answerTime}`);
 
-    const getTimeRemaining = (e) => {
-        const total = Date.parse(e) - Date.parse(new Date());
+    const getTimeRemaining = (e: string) => {
+        const total = Date.parse(e) - Date.parse(new Date().toString());
         const seconds = Math.floor((total / 1000) % 60);
         const minutes = Math.floor((total / 1000 / 60) % 60);
         const hours = Math.floor((total / 1000 / 60 / 60) % 24);
@@ -68,7 +68,7 @@ function Question({
         };
     };
 
-    const startTimer = (e) => {
+    const startTimer = (e: string) => {
         let { total, hours, minutes, seconds } = getTimeRemaining(e);
         if (total >= 0) {
             setTimer(
@@ -81,13 +81,13 @@ function Question({
         }
     };
 
-    const clearTimer = (e) => {
+    const clearTimer = (e: string | Date) => {
         setTimer(`00:00:${answerTime}`);
         if (Ref.current) clearInterval(Ref.current);
         const id = setInterval(() => {
-            startTimer(e);
+            startTimer(String(e));
         }, 1000);
-        Ref.current = id;
+        Ref.current = id as any;
     };
 
     const getDeadTime = () => {

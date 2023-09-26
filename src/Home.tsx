@@ -11,16 +11,15 @@ function Home({ setCookie }: Props) {
     setCookie("question", 1);
     setCookie("correct", 0);
     function pickDificuly() {
-        setCookie(
-            "dificulty",
-            document.getElementById("dificulty").selectedIndex,
-            {
-                path: "/",
-            }
-        );
-        if (document.getElementById("dificulty").selectedIndex == 0) {
+        const dificulty = document.getElementById(
+            "dificulty"
+        )! as HTMLSelectElement;
+        setCookie("dificulty", dificulty.selectedIndex, {
+            path: "/",
+        });
+        if (dificulty.selectedIndex == 0) {
             location.href = "/easy1";
-        } else if (document.getElementById("dificulty").selectedIndex == 1) {
+        } else if (dificulty.selectedIndex == 1) {
             location.href = "/medium1";
         } else {
             location.href = "hard1";
