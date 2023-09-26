@@ -32,7 +32,7 @@ function Home({ setCookie }: Props) {
             <br />
             <div className="container">
                 <h1>Welcome to the Harry Potter Quiz!</h1>
-                <h2>Please select your dificulty:</h2>
+                <h2>Please select your difficulty:</h2>
                 <br />
                 <Select
                     item_names={[
